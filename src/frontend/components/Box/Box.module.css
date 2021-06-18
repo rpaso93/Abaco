@@ -1,0 +1,106 @@
+.Box {
+  color: #e6e6e6;
+  display: flex;
+}
+
+.Body {
+  display: flex;
+  flex-direction: column;
+  padding: .75rem;
+  text-align: justify;
+  background-color: rgba(21, 21, 21, 0.3);
+  border-radius: 2px;
+  width: 100%;
+  flex: 1;
+}
+
+.Body > div > h1 {
+  font-size: 1.2rem; 
+}
+
+.Body > div > h2 {
+  font-size: 1.1rem; 
+}
+.Body > div > h3 {
+  font-size: 1.05rem; 
+}
+
+.Body > div > h4 {
+  font-size: 1rem; 
+}
+
+.Body > div > h5 {
+  font-size: 1rem; 
+}
+.Body > div > h6 {
+  font-size: 1rem; 
+}
+
+.Body > div > p {
+  font-size: .95rem; 
+}
+
+.Label {
+  padding: 1rem 0.7rem;
+  background-color: rgba(14, 14, 14, 0.3);
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  text-transform: uppercase;
+  user-select: none;
+  cursor: pointer;
+  font-size: .8rem;
+}
+
+.Label.Left {
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.Label.Top {
+  writing-mode: inherit;
+  padding: 0.7rem 1rem;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.Label.Bottom {
+  writing-mode: inherit;
+  padding: 0.7rem 1rem;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.Label.Right {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  padding-right: 1.1rem;
+}
+
+.Card::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.Card::-webkit-scrollbar-thumb {
+  background: rgba(75, 75, 75);
+  border: 3px solid transparent;
+  border-radius: 7px;
+  background-clip: content-box;
+  transition: all 0.3s ease-in-out;
+}
+
+.Card::-webkit-scrollbar-thumb:hover {
+  background: rgb(55, 55, 55);
+  border: 3px solid transparent;
+  border-radius: 7px;
+  background-clip: content-box;
+  transition: all 0.3s ease-in-out;
+}
+
+@media screen and (min-width: 750px){
+  .Body {
+    padding: 1rem 1.5rem;
+  }
+  .Label{
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,11 @@
+query GetProjectImages($id: ID!){
+   project(id: $id){
+    id
+    images{
+      id
+      path
+      fileName
+      createdAt
+    }
+  }
+}

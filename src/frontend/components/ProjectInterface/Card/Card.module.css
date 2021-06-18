@@ -1,0 +1,98 @@
+.Card {
+  height: 200px;
+  background-color: black;
+  display: flex;
+  border-radius: 2px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  cursor: pointer;
+  box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.3);
+}
+
+.Body {
+  padding: 0.5rem;
+  align-self: flex-end;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.Header h3, .Data h4 {
+  margin: .2rem;
+  margin-bottom: .5rem;
+  text-transform: capitalize;
+  color: #E6E6E6;
+  text-shadow: 0px 0px 2px black;
+}
+
+.Header h3 {
+  font-size: 1.5rem;
+  font-family: 'Gotham-Bold';
+}
+
+.Data > h4 {
+  font-size: 1rem;
+  font-family: 'Gotham-Book';
+  font-weight: 500;
+  line-height: 0;
+}
+
+.Data {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Data > span {
+  align-self: flex-end;
+  margin: 0 .2rem;
+  font-size: .8rem;
+  text-shadow: 0px 0px 2px black;
+}
+
+.Data ul {
+  display: flex;
+  list-style: none;
+  text-decoration: none;
+}
+
+.Data ul > li {
+  text-shadow: 0px 0px 2px black;
+  padding: 0.35rem;
+  margin: 0 .2rem;
+  font-size: .8rem;
+  font-family: 'Gotham-Bold';
+  border-radius: 2px;
+  background-color: rgb(70, 95, 112);
+}
+
+@media screen and (min-width: 950px) {
+  .Card {
+    height: 240px;
+  }
+  .Header h3 {
+    font-size: 1.24rem;
+  }
+  
+  .Data > h4 {
+    font-size: 1.1rem;
+  }
+
+  .Data > span {
+    font-size: 1rem;
+  }
+  
+  .Data ul > li {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,16 @@
+.ImgContainer {
+  margin: auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 100%;
+}
+
+.ImgContainer img{
+  margin: auto;
+  z-index: 0;
+  height: 250px;
+  background-color: black;
+  width: 99.6%;
+  object-fit: cover;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}

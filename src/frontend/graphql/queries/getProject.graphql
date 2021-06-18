@@ -1,0 +1,19 @@
+query GetProject($id: ID!){
+  project(id: $id){
+    id
+    name
+    location
+    description
+    surface
+    year
+    categories{
+      id
+      name
+    }
+    createdAt
+    images{
+      id
+      path
+    }
+  }
+}

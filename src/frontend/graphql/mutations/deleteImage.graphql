@@ -1,0 +1,3 @@
+mutation DeleteImage($id: ID!){
+  removeImageFromProject(id: $id)
+}

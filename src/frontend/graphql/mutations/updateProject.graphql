@@ -1,0 +1,21 @@
+mutation UpdateProject($id: ID!, $input: ProjectInput!){
+  updateProject(id: $id, input: $input){
+    id
+    name
+    surface
+    year
+    location
+    description
+    portraitId
+    categories{
+      id
+      name
+    }
+    images{
+      id
+      path
+    }
+    createdAt
+    updatedAt
+  }
+}

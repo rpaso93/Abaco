@@ -1,0 +1,6 @@
+query getProjectsNames{
+  projects{
+    id
+    name
+  }
+}

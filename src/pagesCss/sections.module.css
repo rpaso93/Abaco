@@ -1,0 +1,187 @@
+.Body {
+  width: 100%;
+  height: 91.8vh;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.TopContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: auto;
+  padding: 0.5rem;
+}
+
+.TopContent > span {
+  min-width: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: .5rem;
+  color: #ffffff;
+  text-shadow: 1px 1px 5px black;
+  
+}
+
+.TopContent > span > h1 {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 3px;
+}
+
+.TopContent > span > p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.TopContent > span > p:first-of-type {
+  margin-top: .3rem;
+}
+
+.TopContent > span > abbr {
+  align-self: flex-end;
+  margin-top: .3rem;
+  font-size: .95rem;
+}
+
+.TopContent > div {
+  color: #ffffff;
+  border-radius: 2px;
+  text-shadow: 0px 0px 2px black;
+  text-shadow: 1px 1px 5px black;
+}
+
+.Arrows {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.ArrowContainer {
+  min-width: 60px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.Arrow {
+  font-size: 50px;
+  color: #e6e6e6;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.ImgContainer {
+  max-width: 650px;
+  display: flex;
+  align-self: flex-end;
+  margin: 0.5rem;
+  padding: 1rem;
+  border-radius: 2px;
+}
+
+.ImgContainer div::-webkit-scrollbar {
+  height: 10px;
+}
+
+.ImgContainer div::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.35);
+  border-radius: 99px;
+}
+
+.ImgContainer div::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.ImgScroll {
+  display: flex;
+  align-items: center;
+  justify-content: safe;
+  overflow-y: hidden;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.ImgScroll > img {
+  margin: 0.5rem;
+  object-fit: cover;
+  width: 30%;
+  cursor: pointer;
+}
+
+.ImgScroll > img:first-of-type {
+  margin-left: 0;
+}
+
+@media screen and (max-width: 750px) {
+  .TopContent{
+    padding: .5rem 0 .5rem .5rem;
+  }
+  .TopContent > span {
+    min-width: 130px;
+  }
+  .TopContent > span > h1 {
+    font-size: 1.8rem;
+  }
+
+  .TopContent > span > p {
+    font-size: 1.1rem;
+  }
+
+  .TopContent > span > abbr {
+    font-size: 1rem;
+  }
+
+  .ArrowContainer {
+    min-width: 50px;
+    height: 50px;
+  }
+  
+  .Arrow {
+    font-size: 40px;
+  }
+
+  .Body {
+    background-size: cover;
+  }
+  
+}
+
+@media screen and (max-width: 320px) {
+  .TopContent > span > h1 {
+    font-size: 1.75rem;
+  }
+
+  .TopContent > span > p {
+    font-size: 1.05rem;
+  }
+
+  .TopContent > span > abbr {
+    font-size: 1rem;
+  }
+}
+
+
+@media screen and (max-height: 740px) {
+  .Body {
+    height: 88vh;
+  }
+}
+
+
+
+@media screen and (max-height: 480px) {
+  .Body {
+    height: 83vh;
+  }
+}

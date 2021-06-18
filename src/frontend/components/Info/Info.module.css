@@ -1,0 +1,82 @@
+.Container {
+  width: 100%;
+  background: rgb(21, 21, 21);
+  border-top: 2px solid rgb(51, 51, 51);
+  color: #e6e6e6;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem calc((100vw - 1350px) / 2);
+  justify-content: space-evenly;
+  text-transform: capitalize;
+}
+
+.Container hr {
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  width: 65%;
+}
+
+.Data {
+  flex: .15;
+  display: flex;
+  flex-direction: column;
+}
+
+.Title {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  color: #e6e6e6;
+  line-height: 32px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.Title svg {
+  margin-right: 1rem;
+}
+
+.Content {
+  padding: 1rem;
+  color: #e6e6e6;
+  font-size: 0.95rem;
+  text-transform: none;
+  text-align: center;
+  margin: 1rem;
+}
+
+@media screen and (min-width: 620px) {
+  .Container hr {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .Container {
+    flex-direction: row;
+  }
+
+  .Container hr {
+    width: 100%;
+  }
+
+  .Title {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .Data {
+    flex: .23;
+  }
+
+  .Content {
+    font-size: 1rem;
+  }
+
+  .Title svg {
+    margin-right: 0;
+    margin-bottom: .5rem;
+  }
+}

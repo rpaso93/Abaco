@@ -1,0 +1,58 @@
+.Container {
+  padding: 2rem;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  flex-direction: column;
+  text-transform: capitalize;
+}
+
+.Form {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  text-transform: capitalize;
+}
+
+.ContactInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 0.5;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.Button {
+  margin: 2rem auto 0 auto;
+  padding: 1.3rem 4rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  text-transform: uppercase;
+  border: 1px solid #e6e6e6;
+  background-color: transparent;
+  color: #e6e6e6;
+  transition: all 0.1s ease;
+}
+
+.Button:hover {
+  cursor: pointer;
+  border-color: #547287;
+  color: #547287;
+}
+
+.Button:active {
+  outline: none;
+  border-color: #678ba3;
+  color: #678ba3;
+}
+
+@media screen and (min-width: 900px) {
+  .Form {
+    flex-direction: row;
+    width: 75%;
+  }
+}

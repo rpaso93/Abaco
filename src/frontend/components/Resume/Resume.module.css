@@ -1,0 +1,109 @@
+.Container {
+  padding: 1rem calc((100vw - 1250px) / 2);
+  display: flex;
+  flex-direction: column;
+  color: #e6e6e6;
+}
+
+.Article {
+  padding: 1rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Article > img {
+  object-fit: contain;
+}
+
+.Article > div {
+  font-size: 1rem;
+  padding: 1.5rem;
+}
+
+.Article > div > h2:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.Article > div h1,
+.Article > div h2,
+.Article > div h3,
+.Article > div h4,
+.Article > div h5,
+.Article > div h6 {
+  margin-bottom: 1rem;
+  line-height: 30px;
+}
+
+.Article > div {
+  text-align: justify;
+}
+
+.Article > div > div > h3 {
+  font-size: 1.3rem;
+}
+
+.Article > div > div > h4 {
+  font-size: 1.2rem;
+}
+.Article > div > div > h5 {
+  font-size: 1.1rem;
+}
+.Article > div > div > h6 {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 410px) {
+  .Article > div {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 710px) {
+  .Article {
+    width: 80%;
+    margin: 1rem auto;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .Article {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .Article > div {
+    flex: 0.75;
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+    padding: 3rem 1.5rem;
+  }
+  .Article > img {
+    height: 100%;
+    flex: 0.3;
+    max-width: 50%;
+    margin: 0.5rem 1.5rem;
+  }
+  .Article:nth-child(odd) > img {
+    margin-left: 0;
+  }
+  .Article:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+  .Article:nth-child(even) > div {
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+  }
+  .Article:nth-child(even) > img {
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .Article > img {
+    max-width: none;
+  }
+}

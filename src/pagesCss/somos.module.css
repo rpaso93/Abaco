@@ -1,0 +1,78 @@
+.InfoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Info {
+  max-width: 100%;
+  padding: 1rem 2.75rem;
+  color: #e6e6e6;
+  text-shadow: 1px 1px 5px black;
+}
+
+.InfoContainer > div > svg {
+  height: 10rem;
+  margin-top: 2rem;
+}
+
+.Header { 
+  text-rendering: optimizeLegibility;
+  font-weight: 700;
+  margin-top: 1rem;
+  text-align: center;
+  text-shadow: 1px 1px 5px black;
+}
+
+.Info > div > p {
+  font-size: 1.1rem;
+}
+
+.Step {
+  width: 100%;
+  height: 100px;
+  background-image: linear-gradient(rgba(32, 32, 32, 0), rgba(32, 32, 32, 1));
+  backdrop-filter: blur(1.5px);
+}
+
+@media screen and (min-width: 500px) {
+  .InfoContainer > div > svg {
+    height: 12rem;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .InfoContainer > div > svg {
+    height: 14rem;
+  }
+
+  .Info {
+    max-width: 84%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .Header {
+    margin-bottom: 1rem;
+  }
+
+  .Info {
+    max-width: 64%;
+    padding: 2rem 3.5rem;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .Info {
+    max-width: 50%;
+  }
+}
+
+@media screen and (min-width: 1560px) {
+  .Info {
+    max-width: 40%;
+  }
+}

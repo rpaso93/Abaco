@@ -1,0 +1,20 @@
+.List {
+  padding: 0 5%;
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+@media screen and (min-width: 900px) {
+  .List {
+    padding: 0 8%;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .List {
+    padding: 0 10%;
+  }
+}

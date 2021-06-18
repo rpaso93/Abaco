@@ -1,0 +1,88 @@
+.Card {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.95);
+  width: 33%;
+  max-width: 300px;
+  min-width: 200px;
+  margin: 0 1rem;
+  min-height: calc(240px + 10vw);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  transform: scale(1.06);
+  z-index: 4;
+  box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.95);
+  transition: all .15s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.Date {
+  padding: 0.3rem;
+  margin: 0 .2rem;
+  font-size: .90rem;
+  align-self: flex-end;
+  text-shadow: 1px 1px 5px black;
+}
+
+.Card:hover, .Card.Left:hover, .Card.Right:hover {
+  z-index: 8;
+  transform: scale(1.1);
+  box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.95);
+  transition: all .15s ease-in-out;
+}
+
+.Card.Left {
+  transform: scale(0.93);
+  z-index: 2;
+  width: 32%;
+  max-width: 240px;
+  min-width: 120px;
+  box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.75);
+}
+
+.Card.Right {
+  transform: scale(0.93);
+  z-index: 2;
+  width: 32%;
+  max-width: 240px;
+  min-width: 120px;
+  box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.75);
+}
+
+@media screen and (max-width: 1150px) {
+  .Card {
+    transform: scale(1.07);
+    margin: 0 .5rem;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .Card {
+    margin: 0;
+  }
+  .Card.Left, .Card.Right {
+    min-width: 100px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .Card {
+    transform: scale(1.08);
+    min-width: 160px;
+    margin: 0;
+  }
+  .Card.Left, .Card.Right {
+    min-width: 100px;
+  }
+}
+
+@media screen and (max-width: 362px) {
+  .Card{
+    min-width: 150px;
+  }
+  .Card.Left, .Card.Right {
+    min-width: 80px;
+  }
+}

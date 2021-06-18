@@ -1,0 +1,65 @@
+.Nav {
+  position: sticky;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: rgb(32, 32, 32);
+  box-shadow: 0px 0px 12px 3px rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgb(51,51,51);
+  z-index: 100;
+}
+
+.NavUpper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem calc((100vw - 1300px) / 2);
+  width: 100%;
+}
+
+.NavMenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 24px;
+}
+
+.NavSocial {
+  margin-left: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.SocialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 99px;
+  padding: 0.32rem;
+  font-size: 16px;
+  color: rgb(51, 51, 51);
+  background-color: #E6E6E6;
+  margin-right: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.SocialLink:hover {
+  transition: all 0.3s ease-in-out;
+  background-color: rgb(103, 139, 163);
+  color: #E6E6E6;
+}
+
+@media screen and (max-width: 1150px) {
+  .NavSocial {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .NavMenu {
+    display: none;
+  }
+}

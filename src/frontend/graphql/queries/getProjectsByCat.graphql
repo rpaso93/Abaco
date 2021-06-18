@@ -1,0 +1,26 @@
+query GetProjectsByCat($category: String!, $limit: Int, $cursor: String, $filter: [String]) {
+  projectsByCat(category: $category, limit: $limit, cursor: $cursor, filter: $filter) {
+    hasMore
+      projects {
+      id
+      mainCategory
+      name
+      location
+      description
+      surface
+      year
+      categories {
+        id
+        name
+      }
+      portraitId
+      createdAt
+      updatedAt
+      images {
+        id
+        path
+        fileName
+      }
+    }
+  }
+}

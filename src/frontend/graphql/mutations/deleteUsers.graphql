@@ -1,0 +1,3 @@
+mutation DeleteUsers($ids: [ID!]!){
+  deleteUsers(ids: $ids)
+}

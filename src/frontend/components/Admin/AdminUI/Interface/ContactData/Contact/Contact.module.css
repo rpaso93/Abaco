@@ -1,0 +1,35 @@
+.Container {
+  margin: 2rem;
+  min-width: 230px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Text {
+  flex: .95;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Text button {
+  margin-left: 2rem;
+  align-self: flex-end;
+}
+
+.Form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.Form > button {
+  align-self: flex-end;
+}
+
+.Input {
+  margin: 0;
+  width: 82%;
+  margin-left:1rem;
+}

@@ -1,0 +1,6 @@
+mutation UpdateContactData($id: ID!, $value: String!){
+  updateData(id: $id, value: $value){
+    id
+    value
+  }
+}

@@ -1,0 +1,12 @@
+mutation ChangeRole($id: ID!){
+  changeRole(id: $id){
+    id
+    email
+    name
+    lastname
+    role{
+      id
+      description
+    }
+  }
+}

@@ -1,0 +1,14 @@
+query GetUser {
+  getUser {
+    id
+    email
+    name
+    lastname
+    role {
+      id
+      description
+    }
+    createdAt
+    updatedAt
+  }
+}

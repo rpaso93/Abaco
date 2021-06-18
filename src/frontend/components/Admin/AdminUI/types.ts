@@ -1,0 +1,1 @@
+export type UiStates = 'page' | 'user' | 'project' | 'images' | 'contact';

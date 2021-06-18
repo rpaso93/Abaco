@@ -1,0 +1,17 @@
+.Bars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 8px;
+  padding: .5rem;
+  margin-right: 24px;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 900px) {
+  .Bars {
+    display: none;
+  }
+}

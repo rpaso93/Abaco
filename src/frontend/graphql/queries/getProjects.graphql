@@ -1,0 +1,22 @@
+query GetProjects {
+  projects {
+    id
+    name
+    location
+    description
+    surface
+    year
+    categories {
+      id
+      name
+    }
+    portraitId
+    createdAt
+    updatedAt
+    images {
+      id
+      path
+      fileName
+    }
+  }
+}

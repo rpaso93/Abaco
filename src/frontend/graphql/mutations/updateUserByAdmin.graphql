@@ -1,0 +1,12 @@
+mutation UpdateUserByAdmin($id: ID!, $input: UserInput!){
+  updateUserByAdmin(id: $id, input: $input){
+    id
+    email
+    name
+    lastname
+    role{
+      id
+      description
+    }
+  }
+}

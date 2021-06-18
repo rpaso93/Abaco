@@ -1,0 +1,20 @@
+mutation CreateProject($input: ProjectInput!) {
+  createProject(input: $input) {
+    id
+    name
+    surface
+    year
+    location
+    description
+    categories{
+      id
+      name
+    }
+    images{
+      id
+      path
+    }
+    createdAt
+    updatedAt
+  }
+}

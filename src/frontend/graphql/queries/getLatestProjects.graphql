@@ -1,0 +1,16 @@
+query GetLatestProjects{
+  latestProjects{
+    id
+    year
+    categories{
+      id
+      name
+    }
+    portraitId
+    images{
+      id
+      path
+      fileName
+    }
+  }
+}

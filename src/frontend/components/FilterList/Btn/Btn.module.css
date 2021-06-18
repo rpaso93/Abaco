@@ -1,0 +1,31 @@
+.Btn {
+  padding: 0.3rem .7rem;
+  border-radius: 2px;
+  border: 1px solid #e6e6e6;
+  color: #e6e6e6;
+  background-color: rgb(32, 32, 32);  
+  box-shadow: 1px 1px 5px 1px black;
+  transition: all 0.15s ease-in-out;
+  margin: .25rem;
+  font-size: .75rem;
+}
+
+.Btn:hover {
+  border-color: #678ba3;
+  color: #678ba3;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.Btn:active {
+  border-color: #3676a0;
+  color: #3676a0;
+}
+
+.Active {
+  transition: all 0.15s ease-in-out;
+  background-color: rgb(21, 21, 21);
+  border: 1px solid #678ba3;
+  color: #678ba3;
+  box-shadow: none;
+}

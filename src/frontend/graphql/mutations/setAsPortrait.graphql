@@ -1,0 +1,13 @@
+mutation SetAsPortrait($id: ID!, $projectId: ID!){
+  setPortraitToProject(id: $id, projectId: $projectId){
+    id
+    name
+    portraitId
+    images{
+      id
+      path
+    }
+    createdAt
+    updatedAt
+  }
+}

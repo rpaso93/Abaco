@@ -1,0 +1,6 @@
+query GetContactData{
+  getData{
+    id
+    value
+  }
+}

@@ -1,0 +1,13 @@
+mutation AddImageToProject($id: ID!, $files: [Upload!]!){
+  addImageToProject(id: $id, files: $files){
+    id
+    name
+    images{
+      id
+      path
+      fileName
+      createdAt
+    }
+    __typename
+  }
+}

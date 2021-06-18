@@ -1,0 +1,7 @@
+mutation UpdateSection($id: ID!, $file: Upload, $contenido: String){
+  updateSection(id: $id, file: $file, contenido: $contenido){
+    id
+    img
+    contenido
+  }
+}

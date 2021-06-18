@@ -1,0 +1,13 @@
+query GetProjectsImage{
+  projects{
+    id
+    name
+    portraitId
+    images{
+      id
+      path
+      fileName
+      createdAt
+    }
+  }
+}

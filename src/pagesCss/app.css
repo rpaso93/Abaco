@@ -1,0 +1,337 @@
+@font-face {
+  font-family: 'Gotham Bold';
+  src: url('/Gotham-Bold.otf');
+  src: url('/Gotham-Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham Book';
+  src: url('/Gotham-Book.otf');
+  src: url('/Gotham-Book.otf') format('opentype');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Gotham Book', 'Gotham Bold', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Gotham Bold', 'Gotham Book', sans-serif;
+}
+
+h1 {
+  font-size: 2.3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.7rem;
+}
+h4 {
+  font-size: 1.4rem;
+}
+h5 {
+  font-size: 1.1rem;
+}
+h6 {
+  font-size: 1rem;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 13px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: rgb(32, 32, 32);
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: rgb(90, 90, 90);
+  border: 3px solid transparent;
+  border-radius: 7px;
+  background-clip: content-box;
+  transition: all 0.3s ease-in-out;
+}
+
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: rgb(75, 75, 75);
+  border: 3px solid transparent;
+  border-radius: 7px;
+  background-clip: content-box;
+  transition: all 0.3s ease-in-out;
+}
+
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background: rgb(32, 32, 32);
+}
+
+#DraftEditor .DraftEditor-editorContainer,
+#DraftEditor .DraftEditor-root,
+#DraftEditor .public-DraftEditor-content {
+  height: inherit;
+  text-align: initial;
+}
+#DraftEditor .public-DraftEditor-content[contenteditable='true'] {
+  -webkit-user-modify: read-write-plaintext-only;
+}
+#DraftEditor .DraftEditor-root {
+  position: relative;
+}
+#DraftEditor .DraftEditor-editorContainer {
+  background-color: rgba(255, 255, 255, 0);
+  border-left: 0.1px solid transparent;
+  position: relative;
+  z-index: 1;
+}
+#DraftEditor .public-DraftEditor-block {
+  position: relative;
+}
+#DraftEditor .DraftEditor-alignLeft .public-DraftStyleDefault-block {
+  text-align: left;
+}
+#DraftEditor .DraftEditor-alignLeft .public-DraftEditorPlaceholder-root {
+  left: 0;
+  text-align: left;
+}
+#DraftEditor .DraftEditor-alignCenter .public-DraftStyleDefault-block {
+  text-align: center;
+}
+#DraftEditor .DraftEditor-alignCenter .public-DraftEditorPlaceholder-root {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+#DraftEditor .DraftEditor-alignRight .public-DraftStyleDefault-block {
+  text-align: right;
+}
+#DraftEditor .DraftEditor-alignRight .public-DraftEditorPlaceholder-root {
+  right: 0;
+  text-align: right;
+}
+#DraftEditor .public-DraftEditorPlaceholder-root {
+  color: #9197a3;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+#DraftEditor .public-DraftEditorPlaceholder-hasFocus {
+  color: #bdc1c9;
+}
+#DraftEditor .DraftEditorPlaceholder-hidden {
+  display: none;
+}
+#DraftEditor .public-DraftStyleDefault-block {
+  position: relative;
+  white-space: pre-wrap;
+}
+#DraftEditor.public-DraftStyleDefault-ltr {
+  direction: ltr;
+  text-align: left;
+}
+#DraftEditor .public-DraftStyleDefault-rtl {
+  direction: rtl;
+  text-align: right;
+}
+#DraftEditor .public-DraftStyleDefault-listLTR {
+  direction: ltr;
+}
+#DraftEditor .public-DraftStyleDefault-listRTL {
+  direction: rtl;
+}
+#DraftEditor .public-DraftStyleDefault-ol,
+#DraftEditor .public-DraftStyleDefault-ul {
+  margin: 16px 0;
+  padding: 0;
+}
+#DraftEditor .public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR {
+  margin-left: 1.5em;
+}
+#DraftEditor .public-DraftStyleDefault-depth0.public-DraftStyleDefault-listRTL {
+  margin-right: 1.5em;
+}
+#DraftEditor .public-DraftStyleDefault-depth1.public-DraftStyleDefault-listLTR {
+  margin-left: 3em;
+}
+#DraftEditor .public-DraftStyleDefault-depth1.public-DraftStyleDefault-listRTL {
+  margin-right: 3em;
+}
+#DraftEditor .public-DraftStyleDefault-depth2.public-DraftStyleDefault-listLTR {
+  margin-left: 4.5em;
+}
+#DraftEditor .public-DraftStyleDefault-depth2.public-DraftStyleDefault-listRTL {
+  margin-right: 4.5em;
+}
+#DraftEditor .public-DraftStyleDefault-depth3.public-DraftStyleDefault-listLTR {
+  margin-left: 6em;
+}
+#DraftEditor .public-DraftStyleDefault-depth3.public-DraftStyleDefault-listRTL {
+  margin-right: 6em;
+}
+#DraftEditor .public-DraftStyleDefault-depth4.public-DraftStyleDefault-listLTR {
+  margin-left: 7.5em;
+}
+#DraftEditor .public-DraftStyleDefault-depth4.public-DraftStyleDefault-listRTL {
+  margin-right: 7.5em;
+}
+#DraftEditor .public-DraftStyleDefault-unorderedListItem {
+  list-style-type: square;
+  position: relative;
+}
+#DraftEditor .public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth0 {
+  list-style-type: disc;
+}
+#DraftEditor .public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth1 {
+  list-style-type: circle;
+}
+#DraftEditor .public-DraftStyleDefault-orderedListItem {
+  list-style-type: none;
+  position: relative;
+}
+#DraftEditor.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listLTR:before {
+  left: -36px;
+  position: absolute;
+  text-align: right;
+  width: 30px;
+}
+#DraftEditor .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listRTL:before {
+  position: absolute;
+  right: -36px;
+  text-align: left;
+  width: 30px;
+}
+#DraftEditor .public-DraftStyleDefault-orderedListItem:before {
+  content: counter(ol0) '. ';
+  counter-increment: ol0;
+}
+#DraftEditor .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth1:before {
+  content: counter(ol1, lower-alpha) '. ';
+  counter-increment: ol1;
+}
+#DraftEditor .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth2:before {
+  content: counter(ol2, lower-roman) '. ';
+  counter-increment: ol2;
+}
+#DraftEditor .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth3:before {
+  content: counter(ol3) '. ';
+  counter-increment: ol3;
+}
+#DraftEditor .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth4:before {
+  content: counter(ol4, lower-alpha) '. ';
+  counter-increment: ol4;
+}
+#DraftEditor.public-DraftStyleDefault-depth0.public-DraftStyleDefault-reset {
+  counter-reset: ol0;
+}
+#DraftEditor .public-DraftStyleDefault-depth1.public-DraftStyleDefault-reset {
+  counter-reset: ol1;
+}
+#DraftEditor .public-DraftStyleDefault-depth2.public-DraftStyleDefault-reset {
+  counter-reset: ol2;
+}
+#DraftEditor .public-DraftStyleDefault-depth3.public-DraftStyleDefault-reset {
+  counter-reset: ol3;
+}
+#DraftEditor .public-DraftStyleDefault-depth4.public-DraftStyleDefault-reset {
+  counter-reset: ol4;
+}
+
+#DraftEditor.RichEditor-root {
+  background: #fff;
+  border: 1px solid #ddd;
+  font-family: 'Gotham Book', 'Gotham Bold', serif;
+  font-size: 14px;
+  padding: 15px;
+  min-height: 300px;
+}
+
+#DraftEditor .RichEditor-editor {
+  border-top: 1px solid #ddd;
+  cursor: text;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#DraftEditor .RichEditor-editor .public-DraftEditorPlaceholder-root,
+#DraftEditor .RichEditor-editor .public-DraftEditor-content {
+  margin: 0 -15px -15px;
+  padding: 15px;
+}
+
+#DraftEditor .RichEditor-editor .public-DraftEditor-content {
+  min-height: 300px;
+}
+
+#DraftEditor .RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}
+
+#DraftEditor .RichEditor-editor .RichEditor-blockquote {
+  border-left: 5px solid #eee;
+  color: #666;
+  font-family: 'Hoefler Text', 'Georgia', serif;
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 20px;
+}
+
+#DraftEditor .RichEditor-editor .public-DraftStyleDefault-pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+  font-size: 16px;
+  padding: 20px;
+}
+#DraftEditor .RichEditor-editor > b {
+  font-family: 'Gotham Bold';
+}
+
+#DraftEditor .RichEditor-editor h1 {
+  font-size: 2.3rem;
+}
+#DraftEditor .RichEditor-editor h2 {
+  font-size: 2rem;
+}
+#DraftEditor .RichEditor-editor h3 {
+  font-size: 1.7rem;
+}
+#DraftEditor .RichEditor-editor h4 {
+  font-size: 1.4rem;
+}
+#DraftEditor .RichEditor-editor h5 {
+  font-size: 1.1rem;
+}
+#DraftEditor .RichEditor-editor h6 {
+  font-size: 1rem;
+}
+
+#DraftEditor .RichEditor-controls {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+#DraftEditor .RichEditor-styleButton {
+  color: #999;
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 2px 0;
+  display: inline-block;
+}
+
+#DraftEditor .RichEditor-activeButton {
+  color: #5890ff;
+}

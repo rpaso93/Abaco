@@ -1,0 +1,24 @@
+.Body > section > div > svg {
+  height: 10rem;
+}
+
+@media screen and (min-width: 500px) {
+
+  .Body > section > div > svg {
+    height: 14rem;
+  }
+}
+
+@media screen and (min-width: 700px) {
+
+  .Body > section > div > svg {
+    height: 16rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+
+  .Body > section > div > svg {
+    height: 20rem;
+  }
+}

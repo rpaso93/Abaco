@@ -1,0 +1,84 @@
+.Container {
+  position: relative;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px;
+  user-select: none;
+}
+
+.Container button {
+  position: absolute;
+  z-index: 10;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.LeftBtn {
+  left: 10%;
+}
+
+.RightBtn {
+  right: 10%;
+}
+
+.Arrow {
+  color: #e6e6e6;
+  font-size: 32px;
+  transition: transform 0.2s ease;
+}
+
+.Arrow:hover {
+  transition: transform 0.2s ease;
+  transform: scale(1.2);
+}
+
+@media screen and (max-width: 1150px) {
+  .Card {
+    transform: scale(1.07);
+  }
+  .LeftBtn {
+    left: 5%;
+  }
+
+  .RightBtn {
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 946px) {
+  .LeftBtn {
+    left: 0;
+  }
+
+  .RightBtn {
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .Card {
+    transform: scale(1.08);
+    min-width: 160px;
+  }
+  .Card.Left, .Card.Right {
+    min-width: 100px;
+  }
+}
+
+@media screen and (max-width: 362px) {
+  .Card{
+    min-width: 150px;
+  }
+  .Card.Left, .Card.Right {
+    min-width: 80px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .Container {
+    margin: 48px 32px 32px 32px;
+  }
+}
