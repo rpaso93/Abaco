@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, Form as AntdForm, Typography, Space } from 'antd';
+import { Button, Card, Form as AntdForm, Typography } from 'antd';
 import { CheckOutlined, EditOutlined } from '@ant-design/icons';
 import { Formik, Form } from 'formik';
 import Upload from '../../../../UI/FormFields/Upload2';
@@ -11,7 +11,6 @@ import ContentEditor from '../../../../UI/ContentEditor/ContentEditor';
 import { convertFromHTML, EditorState } from 'draft-js';
 import { ContentState } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
-import user from '../../../../../../server/resolver/user';
 import { openNotificationWithIcon } from '../../../../UI/Notifacion/Notifcation';
 
 const FormItem = AntdForm.Item;
@@ -24,7 +23,7 @@ interface PagesFormProps {
 const PagesForm: React.FC<PagesFormProps> = ({ page }) => {
   const [editing, setEditing] = useState<boolean>(false);
   const [, update] = useUpdateSectionMutation();
-
+  
   const handleClick = () => {
     setEditing(prevState => !prevState);
   };
@@ -70,13 +69,14 @@ const PagesForm: React.FC<PagesFormProps> = ({ page }) => {
               Object.entries(values.file).length === 1
                 ? null
                 : values.file.originFileObj;
-            const response = await update({
+            // Enviar archivo por axios a la ruta de seccion
+            const content_response = await update({
               ...values,
               file: file,
               contenido: htmlOutput,
             });
 
-            if (response.error) {
+            if (content_response.error) {
               openNotificationWithIcon(
                 'error',
                 'Hubo un problema',
@@ -84,11 +84,11 @@ const PagesForm: React.FC<PagesFormProps> = ({ page }) => {
               );
               return;
             }
-            if (response.data) {
+            if (content_response.data) {
               openNotificationWithIcon(
                 'success',
                 'Edición Completa',
-                `La seccion ${response.data.updateSection.id} fue actualizada correctamente.`
+                `La seccion ${content_response.data.updateSection.id} fue actualizada correctamente.`
               );
             }
           }}

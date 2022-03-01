@@ -231,7 +231,7 @@ class UserService {
                 <h3>Hola ${user.name} ${user.lastname}</h3>
                 <hr/>
                 <p>Para cambiar tu contraseña, haz click en el siguiente link.</p>
-                <span><a href="http://localhost:3000/admin/change-password/${token}">Cambiar contraseña</a></span>
+                <span><a href="http://abacoarquitectos.com.ar/admin/change-password/${token}">Cambiar contraseña</a></span>
               </section>
             </div>
           </body>

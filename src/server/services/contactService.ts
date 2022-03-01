@@ -20,9 +20,9 @@ class ContactService {
   public sendEmail = async (input: ContactInput) => {
     try {
       const result = await transporter.sendMail({
-        from: `"Contacto recibido: ${input.name}" <no-reply@abacoarquitectos.com.ar>`,
+        from: `"Consulta de ${input.name}" <no-reply@abacoarquitectos.com.ar>`,
         to: 'contacto.abacosrl@gmail.com',
-        subject: `Nuevo contacto recibido - Razón: ${input.issue}`,
+        subject: `Nuevo consulta recibida - Asunto: ${input.issue}`,
         html: `
         <html lang="es-AR">
           <head>

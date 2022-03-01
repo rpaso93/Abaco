@@ -60,15 +60,6 @@ class ProjectResolver {
 
   @Mutation(() => Project)
   @UseMiddleware(isAuth)
-  async addImageToProject(
-    @Arg('id', () => ID) id: string,
-    @Arg('files', () => [GraphQLUpload]) files: FileUpload[]
-  ): Promise<Project> {
-    return this.projectService.addImages(id, files);
-  }
-
-  @Mutation(() => Project)
-  @UseMiddleware(isAuth)
   async setPortraitToProject(
     @Arg('id', () => ID) id: string,
     @Arg('projectId', () => ID) projectId: string

@@ -1,9 +1,6 @@
 import { ApolloError } from 'apollo-server-errors';
-import { createWriteStream } from 'fs';
 import { stat, mkdir, rm } from 'fs/promises';
-import { FileUpload } from 'graphql-upload';
 import {
-  Brackets,
   getCustomRepository,
   getTreeRepository,
   In,
@@ -16,6 +13,7 @@ import ImageRepository from '../repository/imageRepository';
 import ProjectRepository from '../repository/projectRepository';
 import sharp from 'sharp';
 import Category from '../entity/Category';
+import { Request, Response } from 'express';
 
 class ProjectService {
   constructor(
@@ -53,9 +51,9 @@ class ProjectService {
     });
     const categories = await this.categoryRepository.findDescendants(category);
 
-    return projects.filter(project =>
-      project.categories.some(cat =>
-        categories.some(subCat => subCat.id === cat.id)
+    return projects.filter((project) =>
+      project.categories.some((cat) =>
+        categories.some((subCat) => subCat.id === cat.id)
       )
     );
   };
@@ -77,7 +75,7 @@ class ProjectService {
         cursor,
         realLimit
       );
-      projects.forEach(project => (project.mainCategory = category.name));
+      projects.forEach((project) => (project.mainCategory = category.name));
       return {
         projects: projects.slice(
           0,
@@ -87,14 +85,19 @@ class ProjectService {
       };
     }
     const categories = await this.categoryRepository.findDescendants(category);
-    const ids = filter?.length > 0 ? categories.filter(cat => filter.includes(cat.id)).map(cat => cat.id) : categories.map(cat => cat.id);
+    const ids =
+      filter?.length > 0
+        ? categories
+            .filter((cat) => filter.includes(cat.id))
+            .map((cat) => cat.id)
+        : categories.map((cat) => cat.id);
 
     const projects = await this.projectRepository.findByCategory(
       ids,
       cursor,
       realLimit
     );
-    projects.forEach(project => (project.mainCategory = category.name));
+    projects.forEach((project) => (project.mainCategory = category.name));
     return {
       projects: projects.slice(0, realLimit ? realLimit - 1 : projects.length),
       hasMore: projects.length === realLimit,
@@ -166,28 +169,24 @@ class ProjectService {
     }
   };
 
-  public addImages = async (id: string, files: FileUpload[]) => {
+  public addImages = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { files } = req;
     const project = await this.projectRepository.findOne(id);
-    if (!project) {
-      throw new ApolloError(
-        'El proyecto al que quiere asociar las imagenes, no existe',
-        '404'
-      );
-    }
     const images: Image[] = await this.imageRepository.find({
       project: { id: id },
     });
-    const projectPath = `${__dirname}/../../../public/${project.name}`;
 
-    try {
-      await stat(projectPath);
-      return await this.writeImages(files, projectPath, project, images);
-    } catch (err) {
-      if (err.code === 'ENOENT') {
-        await mkdir(projectPath);
-        return await this.writeImages(files, projectPath, project, images);
-      }
+    const result = await this.writeImages(
+      files as Express.Multer.File[],
+      project,
+      images
+    );
+
+    if (result) {
+      res.status(200).json('Success');
     }
+    res.status(400).json('Something went wrong');
   };
 
   public setPortraitToProject = async (id: string, projectId: string) => {
@@ -236,115 +235,115 @@ class ProjectService {
   };
 
   private deleteImages = async (images: Image[]) => {
-    images.forEach(async img => {
-      const path = __dirname + `/../../../public${img.path}`;
-      await deleteFileIfExists(path);
-    });
+    await Promise.all(
+      images.map(async (img) => {
+        const path = __dirname + `/../../../public${img.path}`;
+        await deleteFileIfExists(path);
+      })
+    );
   };
 
   private writeImages = async (
-    files: FileUpload[],
-    projectPath: string,
+    files: Express.Multer.File[],
     project: Project,
     images: Image[]
   ) => {
-    await Promise.all(
-      files.map(async file => {
-        const { createReadStream, filename } = await file;
-        const stream = createReadStream();
-        const filepath = `${projectPath}/${filename}`;
-        const dotIndex = filename.indexOf('.', filename.length - 6);
-        const newfilename = filename.substring(0, dotIndex);
+    try {
+      await Promise.all(
+        files.map(async (file) => {
+          const dotIndex = file.filename.lastIndexOf('.');
+          const newfilename = file.filename.substring(0, dotIndex);
 
-        const path = `/${project.name}/${newfilename}`;
-        const writableStream = createWriteStream(filepath, { autoClose: true });
+          const image = await this.imageRepository.createAndSave(
+            file.path.slice(file.path.lastIndexOf('public')),
+            newfilename
+          );
+          images.push(image);
 
-        return new Promise((resolve, reject) =>
-          stream
-            .pipe(writableStream)
-            .on('finish', async () => {
-              const image = await this.imageRepository.createAndSave(
-                path,
-                newfilename
-              );
-              images.push(image);
-              const sharpStream = sharp(filepath);
-              const promises = [];
+          const sharpStream = sharp(file.path);
 
-              const dotIndex = filepath.indexOf('.', filepath.length - 6);
-              const newFilepath = filepath.substring(0, dotIndex);
+          const promises = this.multiSharp(
+            sharpStream,
+            file.destination,
+            newfilename
+          );
 
-              await mkdir(newFilepath);
-
-              promises.push(
-                sharpStream
-                  .clone()
-                  .rotate()
-                  .resize({ height: 844, withoutEnlargement: true })
-                  .webp({ quality: 100 })
-                  .withMetadata()
-                  .toFile(`${newFilepath}/${newfilename}.webp`)
-              );
-
-              promises.push(
-                sharpStream
-                  .clone()
-                  .rotate()
-                  .resize({ height: 675, withoutEnlargement: true })
-                  .webp({ quality: 100 })
-                  .withMetadata()
-                  .toFile(`${newFilepath}/${newfilename}-w1200.webp`)
-              );
-
-              promises.push(
-                sharpStream
-                  .clone()
-                  .rotate()
-                  .resize({ height: 506, withoutEnlargement: true })
-                  .webp({ quality: 100 })
-                  .withMetadata()
-                  .toFile(`${newFilepath}/${newfilename}-w900.webp`)
-              );
-
-              promises.push(
-                sharpStream
-                  .clone()
-                  .rotate()
-                  .resize({ height: 338, withoutEnlargement: true })
-                  .webp({ quality: 100 })
-                  .withMetadata()
-                  .toFile(`${newFilepath}/${newfilename}-w600.webp`)
-              );
-
-              promises.push(
-                sharpStream
-                  .clone()
-                  .rotate()
-                  .resize({ height: 169, withoutEnlargement: true })
-                  .webp({ quality: 100 })
-                  .withMetadata()
-                  .toFile(`${newFilepath}/${newfilename}-w300.webp`)
-              );
-
-              await Promise.all(promises)
-                .then(res => {
-                  console.log('Done!', res);
-                })
-                .catch(err => {
-                  console.error(err);
-                });
-              await deleteFileIfExists(filepath);
-              resolve(true);
+          await Promise.all(promises)
+            .then((res) => {
+              console.log('Done!', res);
             })
-            .on('error', error => reject(error))
-        );
-      })
+            .catch((err) => {
+              console.error(err);
+            });
+          await deleteFileIfExists(file.path);
+        })
+      );
+      project.images = images;
+      await this.projectRepository.save(project);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  };
+
+  private multiSharp(
+    sharpStream: sharp.Sharp,
+    newFilepath: string,
+    newfilename: string
+  ) {
+    const promises = [];
+    promises.push(
+      sharpStream
+        .clone()
+        .rotate()
+        .resize({ height: 844, withoutEnlargement: true })
+        .webp({ quality: 100 })
+        .withMetadata()
+        .toFile(`${newFilepath}/${newfilename}.webp`)
     );
 
-    project.images = images;
+    promises.push(
+      sharpStream
+        .clone()
+        .rotate()
+        .resize({ height: 675, withoutEnlargement: true })
+        .webp({ quality: 100 })
+        .withMetadata()
+        .toFile(`${newFilepath}/${newfilename}-w1200.webp`)
+    );
 
-    return this.projectRepository.save(project);
-  };
+    promises.push(
+      sharpStream
+        .clone()
+        .rotate()
+        .resize({ height: 506, withoutEnlargement: true })
+        .webp({ quality: 100 })
+        .withMetadata()
+        .toFile(`${newFilepath}/${newfilename}-w900.webp`)
+    );
+
+    promises.push(
+      sharpStream
+        .clone()
+        .rotate()
+        .resize({ height: 338, withoutEnlargement: true })
+        .webp({ quality: 100 })
+        .withMetadata()
+        .toFile(`${newFilepath}/${newfilename}-w600.webp`)
+    );
+
+    promises.push(
+      sharpStream
+        .clone()
+        .rotate()
+        .resize({ height: 169, withoutEnlargement: true })
+        .webp({ quality: 100 })
+        .withMetadata()
+        .toFile(`${newFilepath}/${newfilename}-w300.webp`)
+    );
+
+    return promises;
+  }
 }
 
 const deleteFileIfExists = async (path: string) => {
