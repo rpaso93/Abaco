@@ -29,7 +29,7 @@ const ImageForm: React.FC<ImageFormProps> = ({ setVisible }) => {
       id: values.id,
       files: values.files.map((file: UploadFile) => file.originFileObj),
     });
-
+    
     if (response.error) {
       openNotificationWithIcon(
         'error',

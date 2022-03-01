@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import next from 'next';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { ApolloServer, ApolloServerExpressConfig } from 'apollo-server-express';
 import { buildSchema } from 'type-graphql';
 import { createConnection, ConnectionOptions } from 'typeorm';
@@ -18,6 +18,9 @@ import DBImage from './entity/Image';
 import Role from './entity/Role';
 import Section from './entity/Section';
 import ContactData from './entity/ContactData';
+import ProjectService from './services/projectService';
+import isAuth from './middleware/auth';
+import { uploadMiddleware } from '../utils/multer';
 
 const PORT = process.env.PORT || 3000;
 const dev: boolean = process.env.NODE_ENV !== 'production';
@@ -25,7 +28,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const main = async () => {
-  const conn = await createConnection({
+  const _conn = await createConnection({
     type: 'mariadb',
     database: process.env.DB || 'test',
     username: process.env.DB_USER || 'test',
@@ -37,7 +40,7 @@ const main = async () => {
 
   await app.prepare();
   const server = express();
-  
+
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
       resolvers: [
@@ -53,7 +56,15 @@ const main = async () => {
     context: ({ req, res }): MyContext => ({ req, res }),
   } as any);
 
-  server.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+  server.post(
+    '/project/:id/file',
+    uploadMiddleware.array('images', 20),
+    (req: Request, res: Response) => {
+      const projectService = new ProjectService();
+      return projectService.addImages(req, res);
+    }
+  );
+
   apolloServer.applyMiddleware({ app: server });
 
   server.get('*', (req, res) => {
@@ -65,4 +76,4 @@ const main = async () => {
   });
 };
 
-main().catch(err => console.error(err));
+main().catch((err) => console.error(err));
